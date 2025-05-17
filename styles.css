@@ -1,240 +1,138 @@
-/* Add on top of existing styles.css */
+/* styles.css */
 
-/* Scroll Progress Bar */
-#scroll-progress {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  overflow: hidden;
+  background: #0b0b14;
+  color: #fff;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #a855f7, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+#tsparticles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #a855f7, #6366f1);
-  width: 0%;
-  z-index: 1000;
-  transition: width 0.25s ease;
-}
-
-/* Sidebar active link style */
-.sidebar nav a.sidebar-link.active {
-  color: #a855f7;
-  font-weight: 700;
-}
-
-/* Scroll to top button */
-#scroll-top-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: #6366f1;
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 1000;
-}
-
-#scroll-top-btn.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Scroll cue arrow */
-#scroll-cue {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 3rem;
-  color: #a855f7;
-  animation: bounce 2s infinite;
-  user-select: none;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(15px);
-  }
-}
-
-/* Submit Modal Styles */
-#submit-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(11, 11, 20, 0.85);
+  width: 220px;
+  height: 100vh;
+  background-color: #12121c;
+  padding: 2rem 1rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  z-index: 1100;
+  border-right: 1px solid #222;
+  z-index: 1;
 }
 
-.modal-content {
-  background: #1a1a2d;
-  border-radius: 12px;
-  padding: 2rem;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
-  position: relative;
-  color: #fff;
+.sidebar .logo {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
 }
 
-.modal-content h2 {
-  margin-bottom: 1rem;
-}
-
-.modal-content label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 600;
-}
-
-.modal-content input,
-.modal-content textarea {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  border-radius: 8px;
-  border: none;
-  background: #12121c;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-}
-
-.modal-content button[type="submit"] {
-  margin-top: 1.5rem;
-  background: #a855f7;
-  border: none;
-  padding: 0.75rem;
-  width: 100%;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-  color: white;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.modal-content button[type="submit"]:hover {
-  background: #7c3aed;
-}
-
-/* Modal close button */
-#modal-close-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  background: none;
-  border: none;
+.sidebar nav a {
   color: #aaa;
-  font-size: 2rem;
-  cursor: pointer;
+  text-decoration: none;
+  margin: 1rem 0;
+  display: block;
   transition: color 0.3s ease;
 }
 
-#modal-close-btn:hover {
+.sidebar nav a:hover {
   color: #fff;
 }
 
-/* Home stats */
-.home-stats {
-  margin: 1rem 0 2rem;
-  display: flex;
-  gap: 2rem;
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: #a855f7;
+.snap-container {
+  margin-left: 220px;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
-.testimonial {
-  font-style: italic;
-  font-size: 1.1rem;
-  color: #ccc;
-  max-width: 400px;
-  margin-top: 1rem;
-  border-left: 4px solid #a855f7;
-  padding-left: 1rem;
-}
-
-/* Demo media in features */
-.demo-media {
-  margin-top: 2rem;
+.section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  padding: 4rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
-.demo-media img {
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-media img {
+  width: 480px;
   max-width: 100%;
   border-radius: 16px;
   box-shadow: 0 0 30px rgba(100, 100, 255, 0.3);
 }
 
-/* Submit FAQs */
-.submit-faq {
-  margin-top: 2rem;
-  color: #aaa;
-  max-width: 600px;
-}
-
-.submit-faq h3 {
-  color: #a855f7;
-  margin-bottom: 0.5rem;
-}
-
-.submit-faq ul {
-  list-style-type: disc;
-  padding-left: 1.5rem;
-  line-height: 1.5;
-}
-
-/* Recent submissions */
-.recent-submissions {
-  margin-top: 2rem;
-  max-width: 400px;
-  color: #aaa;
-}
-
-.recent-submissions h3 {
-  color: #a855f7;
-  margin-bottom: 0.5rem;
-}
-
-.recent-submissions ul {
-  list-style: none;
-}
-
-.recent-submissions li {
+.cards {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-  color: #ddd;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.recent-submissions img {
-  border-radius: 8px;
+.card {
+  background-color: #1a1a2d;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  max-width: 320px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
 }
 
-/* Community links */
-.community-links {
-  margin-top: 2rem;
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.card p {
   color: #aaa;
 }
 
-.community-links h3 {
-  color: #a855f7;
-  margin-bottom: 0.5rem;
+#submit h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-.community-links a {
+#submit a {
   color: #a855f7;
   text-decoration: underline;
-  margin-right: 0.5rem;
 }
