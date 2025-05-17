@@ -8,14 +8,14 @@ tsParticles.load("tsparticles", {
     color: { value: "#a855f7" },
     links: {
       enable: true,
-      color: "#7c3aed",
-      distance: 150,
+      color: "#a855f7",
+      distance: 120,
       opacity: 0.4,
       width: 1
     },
     move: {
       enable: true,
-      speed: 1.5,
+      speed: 1,
       direction: "none",
       outModes: "bounce"
     },
@@ -27,7 +27,7 @@ tsParticles.load("tsparticles", {
       }
     },
     opacity: {
-      value: 0.5
+      value: 0.4
     },
     shape: {
       type: "circle"
