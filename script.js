@@ -6,43 +6,42 @@ tsParticles.load("tsparticles", {
   fpsLimit: 60,
   particles: {
     number: {
-      value: 60,
+      value: 70
     },
     color: {
       value: "#a855f7"
     },
     shape: {
-      type: "circle",
+      type: "circle"
     },
     opacity: {
-      value: 0.3,
+      value: 0.3
     },
     size: {
-      value: { min: 1, max: 4 },
+      value: { min: 1, max: 3 }
     },
     move: {
       enable: true,
-      speed: 1,
+      speed: 0.8,
       direction: "none",
       outModes: {
-        default: "bounce",
-      },
+        default: "bounce"
+      }
     }
   },
   interactivity: {
     events: {
       onHover: {
         enable: true,
-        mode: "repulse",
-      },
-      resize: true
+        mode: "repulse"
+      }
     },
     modes: {
       repulse: {
-        distance: 100,
-        duration: 0.4,
+        distance: 120,
+        duration: 0.4
       }
     }
   },
-  detectRetina: true,
+  detectRetina: true
 });
