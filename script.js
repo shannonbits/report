@@ -1,61 +1,48 @@
+// script.js
 tsParticles.load("tsparticles", {
-  fullScreen: { enable: false },
   background: {
-    color: { value: "transparent" }
+    color: "#0b0b14"
   },
+  fpsLimit: 60,
   particles: {
-    color: { value: "#a855f7" },
-    links: {
-      enable: true,
-      color: "#a855f7",
-      distance: 130,
-      opacity: 0.5,
-      width: 1
+    number: {
+      value: 60,
+    },
+    color: {
+      value: "#a855f7"
+    },
+    shape: {
+      type: "circle",
+    },
+    opacity: {
+      value: 0.3,
+    },
+    size: {
+      value: { min: 1, max: 4 },
     },
     move: {
       enable: true,
-      speed: 1.2,
+      speed: 1,
       direction: "none",
-      outModes: "bounce"
-    },
-    number: {
-      value: 60,
-      density: {
-        enable: true,
-        area: 800
-      }
-    },
-    opacity: {
-      value: 0.5
-    },
-    shape: {
-      type: "circle"
-    },
-    size: {
-      value: { min: 1, max: 3 }
+      outModes: {
+        default: "bounce",
+      },
     }
   },
   interactivity: {
     events: {
       onHover: {
         enable: true,
-        mode: "repulse"
-      },
-      onClick: {
-        enable: true,
-        mode: "push"
+        mode: "repulse",
       },
       resize: true
     },
     modes: {
       repulse: {
         distance: 100,
-        duration: 0.4
-      },
-      push: {
-        quantity: 4
+        duration: 0.4,
       }
     }
   },
-  detectRetina: true
+  detectRetina: true,
 });
