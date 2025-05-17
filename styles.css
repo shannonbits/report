@@ -7,13 +7,16 @@
 html, body {
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #1e1b2e, #3c1d5d);
+  background: linear-gradient(to bottom, #1a1a2e, #2a145c);
   color: white;
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 #tsparticles {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
@@ -26,34 +29,40 @@ html, body {
   left: 0;
   height: 100%;
   width: 200px;
-  background-color: rgba(20, 20, 30, 0.8);
+  background: rgba(20, 20, 30, 0.85);
   backdrop-filter: blur(10px);
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
   z-index: 10;
 }
 
 .sidebar .logo {
   font-size: 1.8rem;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .sidebar nav {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
+  width: 100%;
+  text-align: center;
 }
 
 .sidebar nav a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.2s ease;
+  font-weight: 600;
+  padding: 0.5rem;
+  transition: 0.3s;
 }
 
 .sidebar nav a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
   color: #a855f7;
 }
 
@@ -65,7 +74,7 @@ html, body {
   font-weight: bold;
 }
 
-/* Scroll Sections */
+/* Scroll Snap Sections */
 .snap-container {
   margin-left: 200px;
   height: 100vh;
@@ -87,11 +96,25 @@ html, body {
 .section h1, .section h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: white;
 }
 
 .section p {
   font-size: 1.1rem;
   max-width: 600px;
   color: #e0e0e0;
+}
+
+.submit-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  border: 1px solid #7c3aed;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.submit-link:hover {
+  background: #7c3aed;
+  color: #fff;
 }
