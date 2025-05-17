@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rePort | Indie App Showcase</title>
+    <title>rePort Collection | Indie App Library</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -46,6 +46,7 @@
             min-height: 100vh;
         }
 
+        /* Premium Sidebar */
         .sidebar {
             padding: 2.5rem 2rem;
             position: fixed;
@@ -55,6 +56,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(10px);
         }
 
         .logo {
@@ -82,31 +85,57 @@
             padding: 0.5rem 0;
             position: relative;
             opacity: 0.8;
-            transition: opacity 0.3s var(--ease);
+            transition: all 0.3s var(--ease);
         }
 
         .nav-links a:hover {
             opacity: 1;
+            transform: translateX(5px);
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--white);
-            transition: width 0.4s var(--ease);
+            left: -15px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--purple-2);
+            opacity: 0;
+            transition: all 0.3s var(--ease);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-links a:hover::before {
+            opacity: 1;
+            left: -10px;
+        }
+
+        .collection-link {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .collection-link a {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+            color: var(--purple-2);
+        }
+
+        .collection-link a:hover {
+            color: var(--purple-1);
+        }
+
+        .collection-link i {
+            font-size: 1.3rem;
         }
 
         .social-links {
             display: flex;
             gap: 1.2rem;
+            margin-top: auto;
         }
 
         .social-links a {
@@ -126,80 +155,24 @@
             padding: 4rem 4rem 6rem;
         }
 
-        section {
-            margin-bottom: 8rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s var(--ease) forwards;
+        /* Collection Header */
+        .collection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
-        h1, h2, h3 {
+        .collection-title {
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 800;
             letter-spacing: -0.03em;
             line-height: 1.1;
         }
 
-        h1 {
-            font-size: clamp(2.8rem, 5vw, 4.8rem);
-            margin-bottom: 2rem;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 2.5rem;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        p {
-            opacity: 0.7;
-            max-width: 600px;
-            font-size: 1.1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.9rem 2rem;
-            background: linear-gradient(90deg, var(--purple-1), var(--purple-3));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
-        }
-
-        .btn i {
-            font-size: 0.9rem;
-        }
-
-        /* App Library Styles */
-        .library-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .search-filter {
+        .collection-controls {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
@@ -213,6 +186,13 @@
             color: white;
             font-family: inherit;
             min-width: 250px;
+            transition: all 0.3s var(--ease);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--purple-2);
+            background: rgba(138, 43, 226, 0.05);
         }
 
         .category-filter {
@@ -223,8 +203,15 @@
             color: white;
             font-family: inherit;
             cursor: pointer;
+            transition: all 0.3s var(--ease);
         }
 
+        .category-filter:focus {
+            outline: none;
+            border-color: var(--purple-2);
+        }
+
+        /* App Grid */
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -256,6 +243,21 @@
             margin-bottom: 1.5rem;
             font-weight: bold;
             font-size: 1.5rem;
+            color: white;
+        }
+
+        .app-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .app-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
         }
 
         .app-card p {
@@ -273,91 +275,29 @@
             opacity: 0.7;
         }
 
-        .app-category {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            background: rgba(138, 43, 226, 0.1);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Contact Form Styles */
-        .contact-form {
-            margin-top: 2.5rem;
-            max-width: 500px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            color: white;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: all 0.3s var(--ease);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--purple-2);
-            background: rgba(138, 43, 226, 0.05);
-        }
-
-        textarea.form-input {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-submit-btn {
+        .btn {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.9rem 2rem;
+            padding: 0.8rem 1.5rem;
             background: linear-gradient(90deg, var(--purple-1), var(--purple-3));
             color: white;
             border: none;
             border-radius: 50px;
             font-weight: 600;
+            text-decoration: none;
             cursor: pointer;
             transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+            font-size: 0.9rem;
         }
 
-        .form-submit-btn:hover {
+        .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
         }
 
-        .form-status {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 8px;
-            display: none;
-        }
-
-        .form-status.success {
-            background: rgba(46, 204, 113, 0.1);
-            border: 1px solid rgba(46, 204, 113, 0.3);
-            display: block;
-        }
-
-        .form-status.error {
-            background: rgba(231, 76, 60, 0.1);
-            border: 1px solid rgba(231, 76, 60, 0.3);
-            display: block;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .btn i {
+            font-size: 0.8rem;
         }
 
         @media (max-width: 900px) {
@@ -389,18 +329,27 @@
                 margin-bottom: 0;
             }
 
+            .collection-link {
+                margin-top: 1rem;
+                padding-top: 1rem;
+            }
+
             .main {
                 grid-column: 1;
                 padding: 3rem 1.5rem;
             }
 
-            section {
-                margin-bottom: 6rem;
-            }
-
-            .library-header {
+            .collection-header {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+
+            .collection-controls {
+                width: 100%;
+            }
+
+            .search-box {
+                width: 100%;
             }
         }
     </style>
@@ -411,12 +360,18 @@
             <div>
                 <div class="logo gradient-text">rePort</div>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#library">App Library</a></li>
-                    <li><a href="#creators">Creators</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#creators">Creators</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
                 </ul>
+                
+                <div class="collection-link">
+                    <a href="collection.html">
+                        <i class="fas fa-box-open"></i>
+                        <span>rePort Collection</span>
+                    </a>
+                </div>
             </div>
             <div class="social-links">
                 <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
@@ -426,76 +381,23 @@
         </aside>
 
         <main class="main">
-            <section id="home" class="hero" style="animation-delay: 0.1s">
-                <h1>Showcasing <span class="gradient-text">indie</span> development</h1>
-                <p>rePort is a curated platform highlighting exceptional applications from independent creators. No corporate nonsense, just pure innovation.</p>
-                <a href="#library" class="btn">Browse Apps <i class="fas fa-arrow-right"></i></a>
-            </section>
-
-            <section id="library" style="animation-delay: 0.2s">
-                <div class="library-header">
-                    <h2>App <span class="gradient-text">Library</span></h2>
-                    <div class="search-filter">
-                        <input type="text" class="search-box" placeholder="Search apps..." id="searchInput">
-                        <select class="category-filter" id="categoryFilter">
-                            <option value="all">All Categories</option>
-                            <option value="productivity">Productivity</option>
-                            <option value="games">Games</option>
-                            <option value="tools">Developer Tools</option>
-                            <option value="creative">Creative</option>
-                        </select>
-                    </div>
+            <div class="collection-header">
+                <h1 class="collection-title gradient-text">rePort Collection</h1>
+                <div class="collection-controls">
+                    <input type="text" class="search-box" placeholder="Search apps..." id="searchInput">
+                    <select class="category-filter" id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="productivity">Productivity</option>
+                        <option value="games">Games</option>
+                        <option value="tools">Developer Tools</option>
+                        <option value="creative">Creative</option>
+                    </select>
                 </div>
-                <div class="apps-grid" id="appGrid">
-                    <!-- Apps will be dynamically inserted here -->
-                </div>
-            </section>
+            </div>
 
-            <section id="creators" style="animation-delay: 0.3s">
-                <h2>Featured <span class="gradient-text">Creator</span></h2>
-                <div class="apps-grid">
-                    <div class="app-card">
-                        <h3>Shaly Development</h3>
-                        <p>Independent developer creating innovative tools and applications with clean, efficient code.</p>
-                        <a href="#" class="btn">View Work</a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="about" style="animation-delay: 0.4s">
-                <h2>About <span class="gradient-text">rePort</span></h2>
-                <p>We spotlight independent developers who are pushing boundaries without corporate backing. Our platform serves as a curated directory for discovering exceptional indie applications.</p>
-            </section>
-
-            <section id="contact" style="animation-delay: 0.5s">
-                <h2>Get <span class="gradient-text">Involved</span></h2>
-                <p>Want to feature your project or collaborate? We'd love to hear from you.</p>
-                
-                <form id="contactForm" class="contact-form" action="https://formsubmit.co/contactrport@gmail.com" method="POST">
-                    <input type="hidden" name="_next" value="https://shannonbits.github.io/report/thankyou.html">
-                    <input type="hidden" name="_subject" value="New message from rePort website">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="text" name="_honey" style="display:none">
-                    
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-input" placeholder="Your Name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-input" placeholder="Your Email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea name="message" class="form-input" placeholder="Your Message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="form-submit-btn">
-                        Send Message <i class="fas fa-paper-plane"></i>
-                    </button>
-                    
-                    <div id="formStatus" class="form-status"></div>
-                </form>
-            </section>
+            <div class="apps-grid" id="appGrid">
+                <!-- Apps will be dynamically inserted here -->
+            </div>
         </main>
     </div>
 
@@ -543,6 +445,20 @@
                 category: "games",
                 creator: "Game Studio X",
                 link: "#"
+            },
+            {
+                name: "NoteSync",
+                description: "Cross-platform note taking app with end-to-end encryption and markdown support.",
+                category: "productivity",
+                creator: "Secure Apps Co",
+                link: "#"
+            },
+            {
+                name: "VectorForge",
+                description: "Powerful vector design tool optimized for creating scalable graphics and icons.",
+                category: "creative",
+                creator: "Design Masters",
+                link: "#"
             }
         ];
 
@@ -550,6 +466,11 @@
         function renderApps(filteredApps = apps) {
             const appGrid = document.getElementById('appGrid');
             appGrid.innerHTML = '';
+            
+            if (filteredApps.length === 0) {
+                appGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center;">No apps found matching your criteria</p>';
+                return;
+            }
             
             filteredApps.forEach(app => {
                 const appCard = document.createElement('div');
@@ -601,67 +522,6 @@
                     });
                 });
             });
-
-            // Animate sections as they come into view
-            const animateOnScroll = () => {
-                const sections = document.querySelectorAll('section');
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    if (sectionTop < window.innerHeight * 0.75) {
-                        section.style.opacity = '1';
-                        section.style.transform = 'translateY(0)';
-                    }
-                });
-            };
-
-            window.addEventListener('load', animateOnScroll);
-            window.addEventListener('scroll', animateOnScroll);
-
-            // Form submission
-            const contactForm = document.getElementById('contactForm');
-            const formStatus = document.getElementById('formStatus');
-
-            if (contactForm) {
-                contactForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    
-                    const submitBtn = contactForm.querySelector('button[type="submit"]');
-                    const originalBtnText = submitBtn.innerHTML;
-                    
-                    try {
-                        submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
-                        submitBtn.disabled = true;
-                        
-                        const formData = new FormData(contactForm);
-                        const response = await fetch(contactForm.action, {
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                                'Accept': 'application/json'
-                            }
-                        });
-                        
-                        if (response.ok) {
-                            formStatus.textContent = 'Message sent successfully! We\'ll get back to you soon.';
-                            formStatus.className = 'form-status success';
-                            contactForm.reset();
-                        } else {
-                            throw new Error('Form submission failed');
-                        }
-                    } catch (error) {
-                        formStatus.textContent = 'Oops! Something went wrong. Please try again later.';
-                        formStatus.className = 'form-status error';
-                        console.error('Form submission error:', error);
-                    } finally {
-                        submitBtn.innerHTML = originalBtnText;
-                        submitBtn.disabled = false;
-                        
-                        setTimeout(() => {
-                            formStatus.style.display = 'none';
-                        }, 5000);
-                    }
-                });
-            }
         });
     </script>
 </body>
