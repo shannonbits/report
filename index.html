@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>rePort</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
 </head>
 <body>
-
-  <!-- Particle Background -->
+  <!-- Particles -->
   <div id="tsparticles"></div>
 
   <!-- Sidebar Navigation -->
@@ -16,8 +17,7 @@
     <div class="logo gradient-text">rePort</div>
     <nav>
       <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#apps">Apps</a>
+      <a href="#features">Features</a>
       <a href="#submit">Submit</a>
     </nav>
   </aside>
@@ -25,28 +25,40 @@
   <!-- Main Content -->
   <main class="snap-container">
     <section class="section" id="home">
-      <h1><span class="gradient-text">rePort</span> – Fan Creations, Reimagined.</h1>
-      <p>The hub for polished fan-made apps curated with love.</p>
+      <div class="hero">
+        <div class="hero-text">
+          <h1><span class="gradient-text">rePort</span> – Fan Projects. Reimagined.</h1>
+          <p>The platform that curates and releases fan-made apps by small developers.</p>
+        </div>
+        <div class="hero-media">
+          <img src="placeholder.png" alt="App Preview">
+        </div>
+      </div>
     </section>
 
-    <section class="section" id="about">
-      <h2>What is <span class="gradient-text">rePort</span>?</h2>
-      <p>We find, refine, and relaunch amazing fan-made apps, giving creators the spotlight they deserve.</p>
-    </section>
-
-    <section class="section" id="apps">
-      <h2>Featured Apps</h2>
-      <p>A curated gallery of incredible projects is on the way.</p>
+    <section class="section" id="features">
+      <div class="cards">
+        <div class="card">
+          <h3>Powered by Creators</h3>
+          <p>Discover incredible apps crafted by passionate developers from the community.</p>
+        </div>
+        <div class="card">
+          <h3>Customizable UI</h3>
+          <p>All releases can be themed and personalized, including shaders and colors.</p>
+        </div>
+        <div class="card">
+          <h3>Diverse App Library</h3>
+          <p>Browse utilities, games, mods, and tools – all made by fans, for fans.</p>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="submit">
       <h2>Submit Your App</h2>
-      <p>Are you a developer? Let us showcase your fan creation to the world.</p>
-      <p><a href="mailto:submit@report.dev" class="submit-link">submit@report.dev</a></p>
+      <p>Email your fan project to <a href="mailto:submit@report.dev">submit@report.dev</a>.</p>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
