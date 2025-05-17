@@ -3,25 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rePort - Home for Indie Creators' Apps</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>rePort | Home for Indie Apps</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --purple-1: #8A2BE2;
+            --purple-2: #9932CC;
+            --purple-3: #9400D3;
+            --gray-1: #1A1A1A;
+            --gray-2: #2D2D2D;
+            --gray-3: #3D3D3D;
+            --white: #F5F5F5;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--gray-1), var(--gray-2));
+            color: var(--white);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Gradient text class */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--purple-1), var(--purple-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        /* Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar - Wattesigma inspired */
+        .sidebar {
+            padding: 2rem;
+            position: fixed;
+            width: 300px;
+            height: 100vh;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            position: relative;
+            transform: translateY(100%);
+            opacity: 0;
+            animation: fadeInUp 0.6s var(--ease) forwards;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--white);
+            transition: width 0.4s var(--ease);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: transform 0.3s var(--ease);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Main content */
+        .main {
+            grid-column: 2;
+            padding: 4rem;
+        }
+
+        section {
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s var(--ease) forwards;
+        }
+
+        /* Hero section */
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(90deg, var(--purple-1), var(--purple-3));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        /* Apps grid */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .app-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.4s var(--ease), background 0.4s var(--ease);
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .app-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-card p {
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding: 1.5rem;
+            }
+
+            .logo {
+                margin-bottom: 1.5rem;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .nav-links a {
+                transform: none;
+                opacity: 1;
+                animation: none;
+            }
+
+            .main {
+                grid-column: 1;
+                padding: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <aside class="sidebar">
-            <div class="logo">
-                <span class="gradient-text">rePort</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#apps"><i class="fas fa-mobile-alt"></i> Apps</a></li>
-                    <li><a href="#creators"><i class="fas fa-users"></i> Creators</a></li>
-                    <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <div>
+                <div class="logo gradient-text">rePort</div>
+                <ul class="nav-links">
+                    <li style="--delay: 0.1s"><a href="#home">Home</a></li>
+                    <li style="--delay: 0.2s"><a href="#apps">Apps</a></li>
+                    <li style="--delay: 0.3s"><a href="#creators">Creators</a></li>
+                    <li style="--delay: 0.4s"><a href="#about">About</a></li>
+                    <li style="--delay: 0.5s"><a href="#contact">Contact</a></li>
                 </ul>
-            </nav>
+            </div>
             <div class="social-links">
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-github"></i></a>
@@ -29,77 +259,96 @@
             </div>
         </aside>
 
-        <main class="content">
-            <section id="home" class="hero">
-                <h1>Welcome to <span class="gradient-text">rePort</span></h1>
-                <p class="subtitle">The premier platform for publishing indie creators' apps</p>
-                <div class="cta-buttons">
-                    <a href="#apps" class="btn">Explore Apps</a>
-                    <a href="#creators" class="btn outline">Meet Creators</a>
-                </div>
+        <main class="main">
+            <section id="home" class="hero" style="animation-delay: 0.2s">
+                <h1>Discover indie apps on <span class="gradient-text">rePort</span></h1>
+                <p>A curated platform showcasing the best applications from independent creators around the world.</p>
+                <a href="#apps" class="btn">Explore Apps</a>
             </section>
 
-            <section id="apps" class="section">
+            <section id="apps" style="animation-delay: 0.3s">
                 <h2>Featured <span class="gradient-text">Apps</span></h2>
-                <div class="app-grid">
+                <div class="apps-grid">
                     <div class="app-card">
-                        <div class="app-icon" style="background-color: #9c27b0;">A1</div>
-                        <h3>App Name 1</h3>
-                        <p>By Creator 1</p>
-                        <a href="#" class="btn small">View</a>
+                        <h3>Pixel Canvas</h3>
+                        <p>Create beautiful pixel art with this intuitive design tool</p>
+                        <a href="#" class="btn">View App</a>
                     </div>
                     <div class="app-card">
-                        <div class="app-icon" style="background-color: #673ab7;">A2</div>
-                        <h3>App Name 2</h3>
-                        <p>By Creator 2</p>
-                        <a href="#" class="btn small">View</a>
+                        <h3>TaskFlow</h3>
+                        <p>Minimal task manager for focused productivity</p>
+                        <a href="#" class="btn">View App</a>
                     </div>
                     <div class="app-card">
-                        <div class="app-icon" style="background-color: #3f51b5;">A3</div>
-                        <h3>App Name 3</h3>
-                        <p>By Creator 3</p>
-                        <a href="#" class="btn small">View</a>
+                        <h3>SoundScape</h3>
+                        <p>Generate ambient sound environments for work or relaxation</p>
+                        <a href="#" class="btn">View App</a>
                     </div>
                 </div>
             </section>
 
-            <section id="creators" class="section">
-                <h2>Our <span class="gradient-text">Creators</span></h2>
-                <div class="creator-list">
-                    <div class="creator-card">
-                        <img src="https://via.placeholder.com/100" alt="Creator 1">
-                        <h3>Creator Name 1</h3>
-                        <p>Specializes in productivity apps</p>
+            <section id="creators" style="animation-delay: 0.4s">
+                <h2>Top <span class="gradient-text">Creators</span></h2>
+                <div class="apps-grid">
+                    <div class="app-card">
+                        <h3>Sarah Lin</h3>
+                        <p>Design tools and creative applications</p>
+                        <a href="#" class="btn">View Profile</a>
                     </div>
-                    <div class="creator-card">
-                        <img src="https://via.placeholder.com/100" alt="Creator 2">
-                        <h3>Creator Name 2</h3>
-                        <p>Game developer</p>
+                    <div class="app-card">
+                        <h3>Marcus Chen</h3>
+                        <p>Productivity and utility apps</p>
+                        <a href="#" class="btn">View Profile</a>
                     </div>
                 </div>
             </section>
 
-            <section id="about" class="section">
+            <section id="about" style="animation-delay: 0.5s">
                 <h2>About <span class="gradient-text">rePort</span></h2>
-                <p><span class="gradient-text">rePort</span> is a platform dedicated to showcasing and distributing applications created by independent developers. We believe in supporting the indie developer community by providing a space where creativity and innovation can thrive.</p>
+                <p>We're a platform dedicated to showcasing independent app developers and helping them reach a wider audience. Our mission is to create a space where creativity thrives outside the traditional app store models.</p>
             </section>
 
-            <section id="contact" class="section">
-                <h2>Contact <span class="gradient-text">Us</span></h2>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" required></textarea>
+            <section id="contact" style="animation-delay: 0.6s">
+                <h2>Get in <span class="gradient-text">Touch</span></h2>
+                <p>Want to feature your app or have questions? Reach out to us.</p>
+                <form style="margin-top: 2rem; max-width: 500px;">
+                    <input type="text" placeholder="Your Name" style="display: block; width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: none; border-radius: 6px; color: white;">
+                    <input type="email" placeholder="Your Email" style="display: block; width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: none; border-radius: 6px; color: white;">
+                    <textarea placeholder="Your Message" rows="5" style="display: block; width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: none; border-radius: 6px; color: white;"></textarea>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </section>
         </main>
     </div>
 
-    <footer>
-        <p>&copy; 2023 <span class="gradient-text">rePort</span>. All rights reserved.</p>
-    </footer>
+    <script>
+        // Simple animation stagger
+        document.querySelectorAll('.nav-links li').forEach((li, index) => {
+            li.style.animationDelay = `calc(${index} * 0.1s + 0.3s)`;
+            li.querySelector('a').style.animationDelay = `calc(${index} * 0.1s + 0.3s)`;
+        });
 
-    <script src="js/script.js"></script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animations
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < window.innerHeight * 0.75) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
