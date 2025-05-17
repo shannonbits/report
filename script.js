@@ -15,12 +15,12 @@ tsParticles.load("tsparticles", {
     },
     move: {
       enable: true,
-      speed: 2,
+      speed: 1.5,
       direction: "none",
       outModes: "bounce"
     },
     number: {
-      value: 50,
+      value: 60,
       density: {
         enable: true,
         area: 800
@@ -33,7 +33,7 @@ tsParticles.load("tsparticles", {
       type: "circle"
     },
     size: {
-      value: { min: 1, max: 5 }
+      value: { min: 1, max: 4 }
     }
   },
   interactivity: {
