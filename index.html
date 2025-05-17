@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rePort | Home for Indie Apps</title>
+    <title>rePort | Indie App Showcase</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --purple-1: #8A2BE2;
             --purple-2: #9932CC;
             --purple-3: #9400D3;
-            --gray-1: #1A1A1A;
-            --gray-2: #2D2D2D;
-            --gray-3: #3D3D3D;
-            --white: #F5F5F5;
+            --gray-1: #0F0F0F;
+            --gray-2: #1A1A1A;
+            --gray-3: #252525;
+            --white: #F0F0F0;
             --ease: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -32,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* Gradient text class */
+        /* Gradient text */
         .gradient-text {
             background: linear-gradient(90deg, var(--purple-1), var(--purple-3));
             -webkit-background-clip: text;
@@ -44,17 +44,17 @@
         /* Layout */
         .container {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 280px 1fr;
             min-height: 100vh;
         }
 
-        /* Sidebar - Wattesigma inspired */
+        /* Sidebar - Wattesigma style */
         .sidebar {
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             position: fixed;
-            width: 300px;
+            width: 280px;
             height: 100vh;
-            border-right: 1px solid rgba(255,255,255,0.1);
+            border-right: 1px solid rgba(255,255,255,0.08);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -62,8 +62,9 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
+            font-weight: 800;
+            margin-bottom: 3.5rem;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
@@ -71,7 +72,7 @@
         }
 
         .nav-links li {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             overflow: hidden;
         }
 
@@ -79,12 +80,16 @@
             color: var(--white);
             text-decoration: none;
             font-size: 1.1rem;
+            font-weight: 500;
             display: block;
             padding: 0.5rem 0;
             position: relative;
-            transform: translateY(100%);
-            opacity: 0;
-            animation: fadeInUp 0.6s var(--ease) forwards;
+            opacity: 0.8;
+            transition: opacity 0.3s var(--ease);
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
         }
 
         .nav-links a::after {
@@ -104,23 +109,25 @@
 
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .social-links a {
             color: var(--white);
             font-size: 1.2rem;
-            transition: transform 0.3s var(--ease);
+            opacity: 0.6;
+            transition: all 0.3s var(--ease);
         }
 
         .social-links a:hover {
-            transform: translateY(-3px);
+            opacity: 1;
+            transform: translateY(-2px);
         }
 
         /* Main content */
         .main {
             grid-column: 2;
-            padding: 4rem;
+            padding: 4rem 4rem 6rem;
         }
 
         section {
@@ -130,24 +137,40 @@
             animation: fadeInUp 0.8s var(--ease) forwards;
         }
 
-        /* Hero section */
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 700;
+        h1, h2 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
             line-height: 1.1;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 5vw, 4.8rem);
             margin-bottom: 2rem;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 3rem;
-            opacity: 0.8;
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2.5rem;
         }
 
+        p {
+            opacity: 0.7;
+            max-width: 600px;
+            font-size: 1.1rem;
+        }
+
+        /* Hero section */
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Buttons */
         .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
             background: linear-gradient(90deg, var(--purple-1), var(--purple-3));
             color: white;
             border: none;
@@ -163,34 +186,42 @@
             box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
         }
 
+        .btn i {
+            font-size: 0.9rem;
+        }
+
         /* Apps grid */
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 1.8rem;
             margin-top: 3rem;
         }
 
         .app-card {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.03);
             border-radius: 12px;
             padding: 2rem;
-            transition: transform 0.4s var(--ease), background 0.4s var(--ease);
+            transition: all 0.4s var(--ease);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .app-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.1);
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.1);
         }
 
         .app-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
         }
 
         .app-card p {
             opacity: 0.7;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
         }
 
         /* Animations */
@@ -202,7 +233,7 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .container {
                 grid-template-columns: 1fr;
             }
@@ -212,29 +243,32 @@
                 width: 100%;
                 height: auto;
                 border-right: none;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-                padding: 1.5rem;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+                padding: 2rem 1.5rem;
             }
 
             .logo {
-                margin-bottom: 1.5rem;
+                margin-bottom: 2rem;
             }
 
             .nav-links {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 1.5rem;
-                margin-bottom: 1.5rem;
+                margin-bottom: 2rem;
             }
 
-            .nav-links a {
-                transform: none;
-                opacity: 1;
-                animation: none;
+            .nav-links li {
+                margin-bottom: 0;
             }
 
             .main {
                 grid-column: 1;
-                padding: 2rem;
+                padding: 3rem 1.5rem;
+            }
+
+            section {
+                margin-bottom: 6rem;
             }
         }
     </style>
@@ -245,90 +279,70 @@
             <div>
                 <div class="logo gradient-text">rePort</div>
                 <ul class="nav-links">
-                    <li style="--delay: 0.1s"><a href="#home">Home</a></li>
-                    <li style="--delay: 0.2s"><a href="#apps">Apps</a></li>
-                    <li style="--delay: 0.3s"><a href="#creators">Creators</a></li>
-                    <li style="--delay: 0.4s"><a href="#about">About</a></li>
-                    <li style="--delay: 0.5s"><a href="#contact">Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#apps">Projects</a></li>
+                    <li><a href="#creators">Creators</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
             <div class="social-links">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
             </div>
         </aside>
 
         <main class="main">
-            <section id="home" class="hero" style="animation-delay: 0.2s">
-                <h1>Discover indie apps on <span class="gradient-text">rePort</span></h1>
-                <p>A curated platform showcasing the best applications from independent creators around the world.</p>
-                <a href="#apps" class="btn">Explore Apps</a>
+            <section id="home" class="hero" style="animation-delay: 0.1s">
+                <h1>Showcasing <span class="gradient-text">indie</span> development</h1>
+                <p>rePort is a curated platform highlighting exceptional applications from independent creators. No corporate nonsense, just pure innovation.</p>
+                <a href="#apps" class="btn">Explore Projects <i class="fas fa-arrow-right"></i></a>
             </section>
 
-            <section id="apps" style="animation-delay: 0.3s">
-                <h2>Featured <span class="gradient-text">Apps</span></h2>
+            <section id="apps" style="animation-delay: 0.2s">
+                <h2>Featured <span class="gradient-text">Projects</span></h2>
                 <div class="apps-grid">
                     <div class="app-card">
-                        <h3>Pixel Canvas</h3>
-                        <p>Create beautiful pixel art with this intuitive design tool</p>
-                        <a href="#" class="btn">View App</a>
+                        <h3>PinkRook</h3>
+                        <p>A chess engine with a minimalist interface and strong AI capabilities.</p>
+                        <a href="https://github.com/shannonbits/pinkrook" target="_blank" class="btn">View on GitHub <i class="fas fa-external-link-alt"></i></a>
                     </div>
+                    <!-- Add more projects as needed -->
+                </div>
+            </section>
+
+            <section id="creators" style="animation-delay: 0.3s">
+                <h2>Featured <span class="gradient-text">Creator</span></h2>
+                <div class="apps-grid">
                     <div class="app-card">
-                        <h3>TaskFlow</h3>
-                        <p>Minimal task manager for focused productivity</p>
-                        <a href="#" class="btn">View App</a>
-                    </div>
-                    <div class="app-card">
-                        <h3>SoundScape</h3>
-                        <p>Generate ambient sound environments for work or relaxation</p>
-                        <a href="#" class="btn">View App</a>
+                        <h3>Shaly Development</h3>
+                        <p>Independent developer creating innovative tools and applications with clean, efficient code.</p>
+                        <a href="#" class="btn">View Work</a>
                     </div>
                 </div>
             </section>
 
-            <section id="creators" style="animation-delay: 0.4s">
-                <h2>Top <span class="gradient-text">Creators</span></h2>
-                <div class="apps-grid">
-                    <div class="app-card">
-                        <h3>Sarah Lin</h3>
-                        <p>Design tools and creative applications</p>
-                        <a href="#" class="btn">View Profile</a>
-                    </div>
-                    <div class="app-card">
-                        <h3>Marcus Chen</h3>
-                        <p>Productivity and utility apps</p>
-                        <a href="#" class="btn">View Profile</a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="about" style="animation-delay: 0.5s">
+            <section id="about" style="animation-delay: 0.4s">
                 <h2>About <span class="gradient-text">rePort</span></h2>
-                <p>We're a platform dedicated to showcasing independent app developers and helping them reach a wider audience. Our mission is to create a space where creativity thrives outside the traditional app store models.</p>
+                <p>We spotlight independent developers who are pushing boundaries without corporate backing. Our platform serves as a curated directory for discovering exceptional indie applications.</p>
             </section>
 
-            <section id="contact" style="animation-delay: 0.6s">
-                <h2>Get in <span class="gradient-text">Touch</span></h2>
-                <p>Want to feature your app or have questions? Reach out to us.</p>
-                <form style="margin-top: 2rem; max-width: 500px;">
-                    <input type="text" placeholder="Your Name" style="display: block; width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: none; border-radius: 6px; color: white;">
-                    <input type="email" placeholder="Your Email" style="display: block; width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: none; border-radius: 6px; color: white;">
-                    <textarea placeholder="Your Message" rows="5" style="display: block; width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: none; border-radius: 6px; color: white;"></textarea>
-                    <button type="submit" class="btn">Send Message</button>
+            <section id="contact" style="animation-delay: 0.5s">
+                <h2>Get <span class="gradient-text">Involved</span></h2>
+                <p>Want to feature your project or collaborate? We'd love to hear from you.</p>
+                <form style="margin-top: 2.5rem; max-width: 500px;">
+                    <input type="text" placeholder="Your Name" style="display: block; width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: inherit; font-size: 1rem;">
+                    <input type="email" placeholder="Your Email" style="display: block; width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: inherit; font-size: 1rem;">
+                    <textarea placeholder="Your Message" rows="5" style="display: block; width: 100%; padding: 1rem; margin-bottom: 1.5rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: inherit; font-size: 1rem;"></textarea>
+                    <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
                 </form>
             </section>
         </main>
     </div>
 
     <script>
-        // Simple animation stagger
-        document.querySelectorAll('.nav-links li').forEach((li, index) => {
-            li.style.animationDelay = `calc(${index} * 0.1s + 0.3s)`;
-            li.querySelector('a').style.animationDelay = `calc(${index} * 0.1s + 0.3s)`;
-        });
-
-        // Smooth scrolling
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -338,9 +352,9 @@
             });
         });
 
-        // Scroll animations
-        const sections = document.querySelectorAll('section');
-        window.addEventListener('scroll', () => {
+        // Animate sections as they come into view
+        const animateOnScroll = () => {
+            const sections = document.querySelectorAll('section');
             sections.forEach(section => {
                 const sectionTop = section.getBoundingClientRect().top;
                 if (sectionTop < window.innerHeight * 0.75) {
@@ -348,6 +362,17 @@
                     section.style.transform = 'translateY(0)';
                 }
             });
+        };
+
+        // Run once on load
+        window.addEventListener('load', animateOnScroll);
+        
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Add slight delay to sidebar links for that premium feel
+        document.querySelectorAll('.nav-links li').forEach((li, index) => {
+            li.style.transitionDelay = `${index * 0.05}s`;
         });
     </script>
 </body>
