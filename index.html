@@ -133,7 +133,7 @@
             animation: fadeInUp 0.8s var(--ease) forwards;
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             font-weight: 800;
             letter-spacing: -0.03em;
             line-height: 1.1;
@@ -147,6 +147,11 @@
         h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
         }
 
         p {
@@ -184,11 +189,46 @@
             font-size: 0.9rem;
         }
 
+        /* App Library Styles */
+        .library-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            padding: 0.8rem 1.2rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            color: white;
+            font-family: inherit;
+            min-width: 250px;
+        }
+
+        .category-filter {
+            padding: 0.8rem 1.2rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            color: white;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.8rem;
-            margin-top: 3rem;
         }
 
         .app-card {
@@ -205,10 +245,17 @@
             border-color: rgba(255,255,255,0.1);
         }
 
-        .app-card h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--purple-1), var(--purple-3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1.5rem;
         }
 
         .app-card p {
@@ -217,6 +264,25 @@
             font-size: 1rem;
         }
 
+        .app-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .app-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Form Styles */
         .contact-form {
             margin-top: 2.5rem;
             max-width: 500px;
@@ -331,6 +397,11 @@
             section {
                 margin-bottom: 6rem;
             }
+
+            .library-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -341,7 +412,7 @@
                 <div class="logo gradient-text">rePort</div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#apps">Projects</a></li>
+                    <li><a href="#library">App Library</a></li>
                     <li><a href="#creators">Creators</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -358,17 +429,25 @@
             <section id="home" class="hero" style="animation-delay: 0.1s">
                 <h1>Showcasing <span class="gradient-text">indie</span> development</h1>
                 <p>rePort is a curated platform highlighting exceptional applications from independent creators. No corporate nonsense, just pure innovation.</p>
-                <a href="#apps" class="btn">Explore Projects <i class="fas fa-arrow-right"></i></a>
+                <a href="#library" class="btn">Browse Apps <i class="fas fa-arrow-right"></i></a>
             </section>
 
-            <section id="apps" style="animation-delay: 0.2s">
-                <h2>Featured <span class="gradient-text">Projects</span></h2>
-                <div class="apps-grid">
-                    <div class="app-card">
-                        <h3>PinkRook</h3>
-                        <p>A chess engine with a minimalist interface and strong AI capabilities.</p>
-                        <a href="https://github.com/shannonbits/pinkrook" target="_blank" class="btn">View on GitHub <i class="fas fa-external-link-alt"></i></a>
+            <section id="library" style="animation-delay: 0.2s">
+                <div class="library-header">
+                    <h2>App <span class="gradient-text">Library</span></h2>
+                    <div class="search-filter">
+                        <input type="text" class="search-box" placeholder="Search apps..." id="searchInput">
+                        <select class="category-filter" id="categoryFilter">
+                            <option value="all">All Categories</option>
+                            <option value="productivity">Productivity</option>
+                            <option value="games">Games</option>
+                            <option value="tools">Developer Tools</option>
+                            <option value="creative">Creative</option>
+                        </select>
                     </div>
+                </div>
+                <div class="apps-grid" id="appGrid">
+                    <!-- Apps will be dynamically inserted here -->
                 </div>
             </section>
 
@@ -393,7 +472,7 @@
                 <p>Want to feature your project or collaborate? We'd love to hear from you.</p>
                 
                 <form id="contactForm" class="contact-form" action="https://formsubmit.co/contactrport@gmail.com" method="POST">
-                    <input type="hidden" name="_next" value="https://shannonbits.github.io/report/thankyou.html">
+                    <input type="hidden" name="_next" value="https://yourusername.github.io/rePort-website/thankyou.html">
                     <input type="hidden" name="_subject" value="New message from rePort website">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="text" name="_honey" style="display:none">
@@ -421,86 +500,167 @@
     </div>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Sample app data
+        const apps = [
+            {
+                name: "PinkRook",
+                description: "A minimalist chess engine with strong AI capabilities, perfect for both beginners and advanced players.",
+                category: "games",
+                creator: "Shaly Development",
+                link: "https://github.com/shannonbits/pinkrook"
+            },
+            {
+                name: "TaskFlow",
+                description: "A distraction-free task manager that helps you focus on what matters most.",
+                category: "productivity",
+                creator: "Indie Dev Team",
+                link: "#"
+            },
+            {
+                name: "PixelArt",
+                description: "Create beautiful pixel art with this intuitive design tool for digital artists.",
+                category: "creative",
+                creator: "Creative Coders",
+                link: "#"
+            },
+            {
+                name: "CodeLens",
+                description: "Visual debugger that helps developers understand complex code execution flows.",
+                category: "tools",
+                creator: "Dev Tools Inc",
+                link: "#"
+            },
+            {
+                name: "SoundScape",
+                description: "Generate ambient sound environments tailored to your work or relaxation needs.",
+                category: "productivity",
+                creator: "Audio Wizards",
+                link: "#"
+            },
+            {
+                name: "SpaceRunner",
+                description: "Endless runner game set in a futuristic space environment with stunning visuals.",
+                category: "games",
+                creator: "Game Studio X",
+                link: "#"
+            }
+        ];
+
+        // Render apps
+        function renderApps(filteredApps = apps) {
+            const appGrid = document.getElementById('appGrid');
+            appGrid.innerHTML = '';
+            
+            filteredApps.forEach(app => {
+                const appCard = document.createElement('div');
+                appCard.className = 'app-card';
+                appCard.innerHTML = `
+                    <div class="app-icon">${app.name.charAt(0)}</div>
+                    <span class="app-category">${app.category}</span>
+                    <h3>${app.name}</h3>
+                    <p>${app.description}</p>
+                    <div class="app-meta">
+                        <span>By ${app.creator}</span>
+                        <a href="${app.link}" target="_blank" class="btn">View App</a>
+                    </div>
+                `;
+                appGrid.appendChild(appCard);
+            });
+        }
+
+        // Filter apps
+        function filterApps() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            
+            const filtered = apps.filter(app => {
+                const matchesSearch = app.name.toLowerCase().includes(searchTerm) || 
+                                     app.description.toLowerCase().includes(searchTerm) ||
+                                     app.creator.toLowerCase().includes(searchTerm);
+                const matchesCategory = category === 'all' || app.category === category;
+                return matchesSearch && matchesCategory;
+            });
+            
+            renderApps(filtered);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderApps();
+            
+            // Set up event listeners
+            document.getElementById('searchInput').addEventListener('input', filterApps);
+            document.getElementById('categoryFilter').addEventListener('change', filterApps);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
-        });
 
-        // Animate sections as they come into view
-        const animateOnScroll = () => {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                if (sectionTop < window.innerHeight * 0.75) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
-            });
-        };
-
-        // Run once on load
-        window.addEventListener('load', animateOnScroll);
-        
-        // Run on scroll
-        window.addEventListener('scroll', animateOnScroll);
-
-        // Add slight delay to sidebar links
-        document.querySelectorAll('.nav-links li').forEach((li, index) => {
-            li.style.transitionDelay = `${index * 0.05}s`;
-        });
-
-        // Enhanced Form Submission
-        const contactForm = document.getElementById('contactForm');
-        const formStatus = document.getElementById('formStatus');
-
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            
-            try {
-                // Show loading state
-                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
-                submitBtn.disabled = true;
-                
-                // Submit form data
-                const formData = new FormData(contactForm);
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
+            // Animate sections as they come into view
+            const animateOnScroll = () => {
+                const sections = document.querySelectorAll('section');
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    if (sectionTop < window.innerHeight * 0.75) {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
                     }
                 });
-                
-                if (response.ok) {
-                    // Show success message
-                    formStatus.textContent = 'Message sent successfully! We\'ll get back to you soon.';
-                    formStatus.className = 'form-status success';
-                    contactForm.reset();
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                // Show error message
-                formStatus.textContent = 'Oops! Something went wrong. Please try again later.';
-                formStatus.className = 'form-status error';
-                console.error('Form submission error:', error);
-            } finally {
-                // Reset button state
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
-                
-                // Hide status message after 5 seconds
-                setTimeout(() => {
-                    formStatus.style.display = 'none';
-                }, 5000);
+            };
+
+            window.addEventListener('load', animateOnScroll);
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('formStatus');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.innerHTML;
+                    
+                    try {
+                        submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
+                        submitBtn.disabled = true;
+                        
+                        const formData = new FormData(contactForm);
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            formStatus.textContent = 'Message sent successfully! We\'ll get back to you soon.';
+                            formStatus.className = 'form-status success';
+                            contactForm.reset();
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    } catch (error) {
+                        formStatus.textContent = 'Oops! Something went wrong. Please try again later.';
+                        formStatus.className = 'form-status error';
+                        console.error('Form submission error:', error);
+                    } finally {
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                        
+                        setTimeout(() => {
+                            formStatus.style.display = 'none';
+                        }, 5000);
+                    }
+                });
             }
         });
     </script>
