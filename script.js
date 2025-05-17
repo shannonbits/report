@@ -3,19 +3,18 @@ tsParticles.load("tsparticles", {
   background: {
     color: { value: "transparent" }
   },
-  fpsLimit: 60,
   particles: {
     color: { value: "#a855f7" },
     links: {
       enable: true,
       color: "#a855f7",
-      distance: 120,
-      opacity: 0.4,
+      distance: 130,
+      opacity: 0.5,
       width: 1
     },
     move: {
       enable: true,
-      speed: 1,
+      speed: 1.2,
       direction: "none",
       outModes: "bounce"
     },
@@ -27,13 +26,13 @@ tsParticles.load("tsparticles", {
       }
     },
     opacity: {
-      value: 0.4
+      value: 0.5
     },
     shape: {
       type: "circle"
     },
     size: {
-      value: { min: 1, max: 4 }
+      value: { min: 1, max: 3 }
     }
   },
   interactivity: {
@@ -49,12 +48,12 @@ tsParticles.load("tsparticles", {
       resize: true
     },
     modes: {
-      push: {
-        quantity: 4
-      },
       repulse: {
         distance: 100,
         duration: 0.4
+      },
+      push: {
+        quantity: 4
       }
     }
   },
