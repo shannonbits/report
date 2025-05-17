@@ -10,15 +10,12 @@
 <body>
   <div id="tsparticles"></div>
 
-  <!-- Scroll Progress Bar -->
-  <div id="scroll-progress"></div>
-
   <div class="sidebar">
     <div class="logo gradient-text">rePort</div>
     <nav>
-      <a href="#home" class="sidebar-link active">Home</a>
-      <a href="#features" class="sidebar-link">Features</a>
-      <a href="#submit" class="sidebar-link">Submit</a>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#submit">Submit</a>
     </nav>
   </div>
 
@@ -29,31 +26,49 @@
         <div class="hero-text">
           <h1><span class="gradient-text">rePort</span> powers fan-made creativity.</h1>
           <p>A platform for showcasing and distributing small developer apps.</p>
+
+          <div class="home-stats">
+            <div><strong>500+</strong> Indie Developers</div>
+            <div><strong>1200+</strong> Apps Featured</div>
+            <div><strong>95%</strong> Positive Feedback</div>
+          </div>
+
+          <blockquote class="testimonial">
+            "rePort helped me reach the exact audience for my fan-game! — <strong>Alex P.</strong>"
+          </blockquote>
         </div>
         <div class="hero-media">
           <img src="https://via.placeholder.com/480x320.png?text=Your+App+Screenshot" alt="App showcase" />
         </div>
       </div>
-      <!-- Scroll cue arrow -->
       <div id="scroll-cue" aria-hidden="true">&#x2193;</div>
     </section>
 
     <!-- Features Section -->
     <section class="section" id="features">
       <h2 class="gradient-text">Why Use rePort?</h2>
+
       <div class="cards">
         <div class="card">
-          <h3>Community Driven</h3>
+          <h3>🧑‍🤝‍🧑 Community Driven</h3>
           <p>We support indie developers building cool stuff for niche fandoms.</p>
         </div>
         <div class="card">
-          <h3>Beautiful Presentation</h3>
+          <h3>🎨 Beautiful Presentation</h3>
           <p>Highlight your apps with stunning visuals and clean design.</p>
         </div>
         <div class="card">
-          <h3>Built For Discovery</h3>
+          <h3>🔎 Built For Discovery</h3>
           <p>Organized and scrollable — your apps are just a swipe away.</p>
         </div>
+      </div>
+
+      <blockquote class="testimonial">
+        "Thanks to rePort, my app found a loving community quickly. — <strong>Jessie K.</strong>"
+      </blockquote>
+
+      <div class="demo-media">
+        <img src="https://via.placeholder.com/600x320.png?text=App+Browsing+Demo" alt="Demo browsing apps" />
       </div>
     </section>
 
@@ -61,30 +76,30 @@
     <section class="section" id="submit">
       <h2>Submit Your App</h2>
       <p>Want your app featured? <a href="#" id="submit-link">Submit it here</a>.</p>
+
+      <div class="submit-faq">
+        <h3>FAQs</h3>
+        <ul>
+          <li><strong>How long does review take?</strong> Usually 2-3 business days.</li>
+          <li><strong>What types of apps are accepted?</strong> Fan-made apps and indie projects.</li>
+          <li><strong>Is submission free?</strong> Yes! Completely free for all developers.</li>
+        </ul>
+      </div>
+
+      <div class="recent-submissions">
+        <h3>Recent Submissions</h3>
+        <ul>
+          <li><img src="https://via.placeholder.com/48" alt="App 1 thumbnail" /> <span>Pixel Quest</span></li>
+          <li><img src="https://via.placeholder.com/48" alt="App 2 thumbnail" /> <span>Story Mapper</span></li>
+          <li><img src="https://via.placeholder.com/48" alt="App 3 thumbnail" /> <span>Fandom Mixer</span></li>
+        </ul>
+      </div>
+
+      <div class="community-links">
+        <h3>Join Our Community</h3>
+        <p>Follow us on <a href="#">Twitter</a>, <a href="#">Discord</a>, and <a href="#">Reddit</a>.</p>
+      </div>
     </section>
-  </div>
-
-  <!-- Scroll to Top Button -->
-  <button id="scroll-top-btn" aria-label="Scroll to top">&#8679;</button>
-
-  <!-- Submit Modal -->
-  <div id="submit-modal" role="dialog" aria-modal="true" aria-labelledby="submit-modal-title" hidden>
-    <div class="modal-content">
-      <button id="modal-close-btn" aria-label="Close submit form">&times;</button>
-      <h2 id="submit-modal-title">Submit Your App</h2>
-      <form id="submit-form">
-        <label for="app-name">App Name</label>
-        <input id="app-name" name="app-name" type="text" required />
-        
-        <label for="app-url">App URL</label>
-        <input id="app-url" name="app-url" type="url" placeholder="https://example.com" required />
-        
-        <label for="app-description">Description</label>
-        <textarea id="app-description" name="app-description" rows="4" required></textarea>
-        
-        <button type="submit">Submit</button>
-      </form>
-    </div>
   </div>
 
   <script src="script.js"></script>
