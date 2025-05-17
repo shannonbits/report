@@ -1,93 +1,81 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>rePort</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
-</head>
-<body>
-  <div id="tsparticles"></div>
+<!-- Home Section -->
+<section class="section" id="home">
+  <div class="hero">
+    <div class="hero-text">
+      <h1><span class="gradient-text">rePort</span> powers fan-made creativity.</h1>
+      <p>A platform for showcasing and distributing small developer apps.</p>
 
-  <div class="sidebar">
-    <div class="logo gradient-text">rePort</div>
-    <nav>
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#features" class="nav-link">Features</a>
-      <button id="open-submit" class="btn-link">Submit</button>
-    </nav>
+      <div class="home-stats">
+        <div><strong>500+</strong> Indie Developers</div>
+        <div><strong>1200+</strong> Apps Featured</div>
+        <div><strong>95%</strong> Positive Feedback</div>
+      </div>
+
+      <blockquote class="testimonial">
+        "rePort helped me reach the exact audience for my fan-game! — <strong>Alex P.</strong>"
+      </blockquote>
+    </div>
+    <div class="hero-media">
+      <img src="https://via.placeholder.com/480x320.png?text=Your+App+Screenshot" alt="App showcase" />
+    </div>
   </div>
+  <div id="scroll-cue" aria-hidden="true">&#x2193;</div>
+</section>
 
-  <div class="snap-container">
-    <!-- Home Section -->
-    <section class="section" id="home">
-      <div class="hero">
-        <div class="hero-text">
-          <h1><span class="gradient-text">rePort</span> powers fan-made creativity.</h1>
-          <p>Discover unique apps crafted by indie developers from around the globe.</p>
-          <p>Explore projects in niche fandoms and connect with passionate creators.</p>
-        </div>
-        <div class="hero-media">
-          <img src="https://via.placeholder.com/480x320.png?text=App+Showcase" alt="App showcase" />
-        </div>
-      </div>
-      <div id="scroll-cue" aria-hidden="true">&#x2193;</div>
-    </section>
+<!-- Features Section -->
+<section class="section" id="features">
+  <h2 class="gradient-text">Why Use rePort?</h2>
 
-    <!-- Features Section -->
-    <section class="section" id="features">
-      <h2 class="gradient-text">Why Use rePort?</h2>
-
-      <div class="cards">
-        <div class="card">
-          <h3>🧑‍🤝‍🧑 Community Driven</h3>
-          <p>Join a vibrant community of indie developers and fans.</p>
-        </div>
-        <div class="card">
-          <h3>🎨 Stunning Presentation</h3>
-          <p>Showcase your apps with modern, elegant design.</p>
-        </div>
-        <div class="card">
-          <h3>🔎 Easy Discovery</h3>
-          <p>Find new and exciting fan-made apps with intuitive browsing.</p>
-        </div>
-      </div>
-
-      <div class="demo-media">
-        <img src="https://via.placeholder.com/600x320.png?text=Browsing+Demo" alt="Demo browsing apps" />
-      </div>
-    </section>
-
-    <!-- Submit Section -->
-    <section class="section" id="submit">
-      <h2>Submit Your App</h2>
-      <p>Ready to share your app with our community? Click the button below to get started.</p>
-      <button id="submit-button" class="btn-primary">Submit Your App</button>
-    </section>
-  </div>
-
-  <!-- Modal -->
-  <div id="submit-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-content">
-      <button id="close-modal" class="close-button" aria-label="Close">&times;</button>
-      <h3 id="modal-title">Submit Your App</h3>
-      <form id="submit-form">
-        <label for="app-name">App Name</label>
-        <input type="text" id="app-name" name="app-name" required />
-        
-        <label for="app-link">App Link (URL)</label>
-        <input type="url" id="app-link" name="app-link" required />
-        
-        <label for="description">Short Description</label>
-        <textarea id="description" name="description" rows="4" required></textarea>
-        
-        <button type="submit" class="btn-primary">Submit</button>
-      </form>
-      <div id="form-message" class="form-message"></div>
+  <div class="cards">
+    <div class="card">
+      <h3>🧑‍🤝‍🧑 Community Driven</h3>
+      <p>We support indie developers building cool stuff for niche fandoms.</p>
+    </div>
+    <div class="card">
+      <h3>🎨 Beautiful Presentation</h3>
+      <p>Highlight your apps with stunning visuals and clean design.</p>
+    </div>
+    <div class="card">
+      <h3>🔎 Built For Discovery</h3>
+      <p>Organized and scrollable — your apps are just a swipe away.</p>
     </div>
   </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <blockquote class="testimonial">
+    "Thanks to rePort, my app found a loving community quickly. — <strong>Jessie K.</strong>"
+  </blockquote>
+
+  <!-- Optional: Add a demo gif or video -->
+  <div class="demo-media">
+    <img src="https://via.placeholder.com/600x320.png?text=App+Browsing+Demo" alt="Demo browsing apps" />
+  </div>
+</section>
+
+<!-- Submit Section -->
+<section class="section" id="submit">
+  <h2>Submit Your App</h2>
+  <p>Want your app featured? <a href="#" id="submit-link">Submit it here</a>.</p>
+
+  <div class="submit-faq">
+    <h3>FAQs</h3>
+    <ul>
+      <li><strong>How long does review take?</strong> Usually 2-3 business days.</li>
+      <li><strong>What types of apps are accepted?</strong> Fan-made apps and indie projects.</li>
+      <li><strong>Is submission free?</strong> Yes! Completely free for all developers.</li>
+    </ul>
+  </div>
+
+  <div class="recent-submissions">
+    <h3>Recent Submissions</h3>
+    <ul>
+      <li><img src="https://via.placeholder.com/48" alt="App 1 thumbnail" /> <span>Pixel Quest</span></li>
+      <li><img src="https://via.placeholder.com/48" alt="App 2 thumbnail" /> <span>Story Mapper</span></li>
+      <li><img src="https://via.placeholder.com/48" alt="App 3 thumbnail" /> <span>Fandom Mixer</span></li>
+    </ul>
+  </div>
+
+  <div class="community-links">
+    <h3>Join Our Community</h3>
+    <p>Follow us on <a href="#">Twitter</a>, <a href="#">Discord</a>, and <a href="#">Reddit</a>.</p>
+  </div>
+</section>
