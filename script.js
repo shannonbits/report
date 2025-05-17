@@ -1,145 +1,4 @@
-/* styles.css */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body, html {
-  font-family: 'Inter', sans-serif;
-  height: 100%;
-  overflow: hidden;
-  background: #0b0b14;
-  color: #fff;
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, #a855f7, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-}
-
-#tsparticles {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100vh;
-  background-color: #12121c;
-  padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-right: 1px solid #222;
-  z-index: 1;
-}
-
-.sidebar .logo {
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-}
-
-.sidebar nav a {
-  color: #aaa;
-  text-decoration: none;
-  margin: 1rem 0;
-  display: block;
-  transition: color 0.3s ease;
-}
-
-.sidebar nav a:hover {
-  color: #fff;
-}
-
-.snap-container {
-  margin-left: 220px;
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-}
-
-.section {
-  scroll-snap-align: start;
-  min-height: 100vh;
-  padding: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-}
-
-.hero-text h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.hero-media img {
-  width: 480px;
-  max-width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 0 30px rgba(100, 100, 255, 0.3);
-}
-
-.cards {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.card {
-  background-color: #1a1a2d;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  max-width: 320px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h3 {
-  margin-bottom: 1rem;
-  color: #fff;
-}
-
-.card p {
-  color: #aaa;
-}
-
-#submit h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-#submit a {
-  color: #a855f7;
-  text-decoration: underline;
-}
-
-script.js:
-
-// script.js
+// Existing tsParticles init
 tsParticles.load("tsparticles", {
   background: {
     color: "#0b0b14"
@@ -185,4 +44,83 @@ tsParticles.load("tsparticles", {
     }
   },
   detectRetina: true
+});
+
+// Active Sidebar Link Highlighting & Scroll Progress Bar
+const sections = document.querySelectorAll('.section');
+const sidebarLinks = document.querySelectorAll('.sidebar-link');
+const scrollProgress = document.getElementById('scroll-progress');
+const snapContainer = document.querySelector('.snap-container');
+
+snapContainer.addEventListener('scroll', () => {
+  const scrollTop = snapContainer.scrollTop;
+  const scrollHeight = snapContainer.scrollHeight - snapContainer.clientHeight;
+  const scrollPercent = (scrollTop / scrollHeight) * 100;
+  scrollProgress.style.width = scrollPercent + '%';
+
+  // Find active section
+  let currentSectionId = '';
+  sections.forEach(section => {
+    const offsetTop = section.offsetTop;
+    if(scrollTop >= offsetTop - 100) {
+      currentSectionId = section.id;
+    }
+  });
+
+  sidebarLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + currentSectionId);
+  });
+
+  // Show/hide scroll to top button
+  if(scrollTop > 200) {
+    scrollTopBtn.classList.add('show');
+  } else {
+    scrollTopBtn.classList.remove('show');
+  }
+});
+
+// Scroll to Top Button
+const scrollTopBtn = document.getElementById('scroll-top-btn');
+scrollTopBtn.addEventListener('click', () => {
+  snapContainer.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Animated Scroll Cue - hide after scroll
+const scrollCue = document.getElementById('scroll-cue');
+snapContainer.addEventListener('scroll', () => {
+  if(snapContainer.scrollTop > 50) {
+    scrollCue.style.opacity = '0';
+  } else {
+    scrollCue.style.opacity = '1';
+  }
+});
+
+// Submit Modal Popup
+const submitLink = document.getElementById('submit-link');
+const submitModal = document.getElementById('submit-modal');
+const modalCloseBtn = document.getElementById('modal-close-btn');
+const submitForm = document.getElementById('submit-form');
+
+submitLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  submitModal.hidden = false;
+  submitModal.focus();
+});
+
+modalCloseBtn.addEventListener('click', () => {
+  submitModal.hidden = true;
+});
+
+submitModal.addEventListener('click', (e) => {
+  if(e.target === submitModal) {
+    submitModal.hidden = true;
+  }
+});
+
+// Simple form submission (demo)
+submitForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert(`Thanks for submitting "${submitForm['app-name'].value}"!`);
+  submitModal.hidden = true;
+  submitForm.reset();
 });
