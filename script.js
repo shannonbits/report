@@ -1,5 +1,145 @@
-// script.js
+/* styles.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  overflow: hidden;
+  background: #0b0b14;
+  color: #fff;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #a855f7, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+#tsparticles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background-color: #12121c;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #222;
+  z-index: 1;
+}
+
+.sidebar .logo {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar nav a {
+  color: #aaa;
+  text-decoration: none;
+  margin: 1rem 0;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.sidebar nav a:hover {
+  color: #fff;
+}
+
+.snap-container {
+  margin-left: 220px;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-media img {
+  width: 480px;
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(100, 100, 255, 0.3);
+}
+
+.cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #1a1a2d;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  max-width: 320px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.card p {
+  color: #aaa;
+}
+
+#submit h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#submit a {
+  color: #a855f7;
+  text-decoration: underline;
+}
+
+script.js:
+
+// script.js
 tsParticles.load("tsparticles", {
   background: {
     color: "#0b0b14"
@@ -45,50 +185,4 @@ tsParticles.load("tsparticles", {
     }
   },
   detectRetina: true
-});
-
-// Smooth scroll handled by CSS (scroll-behavior: smooth)
-
-// Modal handling
-const openSubmit = document.getElementById('open-submit');
-const submitButton = document.getElementById('submit-button');
-const modal = document.getElementById('submit-modal');
-const closeModal = document.getElementById('close-modal');
-const form = document.getElementById('submit-form');
-const formMessage = document.getElementById('form-message');
-
-function openModal() {
-  modal.classList.remove('hidden');
-  // Focus first input for accessibility
-  document.getElementById('app-name').focus();
-}
-
-function closeModalFunc() {
-  modal.classList.add('hidden');
-  formMessage.textContent = '';
-  form.reset();
-}
-
-openSubmit.addEventListener('click', openModal);
-submitButton.addEventListener('click', openModal);
-closeModal.addEventListener('click', closeModalFunc);
-
-// Close modal on outside click
-modal.addEventListener('click', e => {
-  if (e.target === modal) {
-    closeModalFunc();
-  }
-});
-
-// Form submission (fake)
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  formMessage.style.color = '#a855f7';
-  formMessage.textContent = 'Submitting...';
-
-  // Simulate async submission delay
-  setTimeout(() => {
-    formMessage.textContent = 'Thank you! Your app submission has been received.';
-    form.reset();
-  }, 1500);
 });
